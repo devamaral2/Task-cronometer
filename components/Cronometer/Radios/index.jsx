@@ -11,9 +11,10 @@ class Radios extends React.Component {
     return (
       <>
         <label htmlFor='radio'>
-        <label>
+        <label className="radio__label">
           SbyS
           <input
+            className="radio"
             type="radio"
             id="radioSbyS"
             name="radio"
@@ -21,9 +22,10 @@ class Radios extends React.Component {
             value={ radio }
           />
         </label>
-        <label>
+        <label className="radio__label">
           Xp
           <input
+            className="radio"
             type="radio"
             id="radioXp"
             name="radio"

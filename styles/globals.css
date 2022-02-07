@@ -15,3 +15,11 @@ a {
   box-sizing: border-box;
   margin: 5px;
 }
+
+.radio__label {
+  font-size: 2rem;
+}
+
+.radio {
+  width: 6rem;
+}
