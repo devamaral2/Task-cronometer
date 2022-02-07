@@ -1,12 +1,13 @@
-import { createElement, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import TurnList from './TurnList';
 import TaskTime from './TaskTime';
 import Table from './Table';
 import Buttons from './Buttons';
 import Radios from './Radios';
+import { setCookie, parseCookies } from 'nookies';
 
-function Cronometer() {
+export function Cronometer({ data, teste }) {
 
   const [count, setCount] = useState(0);
   const [initTimer, setInitTimer] = useState(false);
@@ -22,14 +23,35 @@ function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
+  
+  useEffect(() => {
+    const dataParsed = JSON.parse(data)
+    console.log(typeof(workTimeSByS))
+    setWorkTimeSByB(dataParsed.workTimeSByS)
+    setWorkTimeXp(dataParsed.workTimeXp)
+    setTaskQuantSByB(dataParsed.taskQuantSByS)
+    setTaskQuantXp(dataParsed.taskQuantXp)
+    setTimeReserve(dataParsed.timeReserve)
+  },[])
 
-  const startTimer = () => {
+  useEffect(() => {
+    const data = {
+      taskQuantSByS: taskQuantSByS || 0,
+      taskQuantXp: taskQuantXp || 0, 
+      workTimeSByS: workTimeSByS || 0, 
+      workTimeXp: workTimeXp || 0,
+      timeReserve: timeReserve || 0,
+    }
+    setCookie(null, 'data', JSON.stringify(data), { path: '/', maxAge: 86400 * 7 })
+  }, [taskQuantSByS, taskQuantXp, workTimeSByS, workTimeXp])
+
+  function startTimer() {
     setTimeout(() => {
       setCount(count + 0.00166666667);
     }, 100);
   }
 
-  const startTurn = () => {
+  function startTurn() {
     if (initTurn) {
       setTimeout(() => {
         setNewCount2(newCount2 + 0.00166666667);
@@ -46,7 +68,7 @@ function Cronometer() {
     if (!initTurn) setTimeReserve(timeReserve + (totalTime - newCount))
   }
 
-  const start = () => {
+  function start() {
     if (!initTimer) {
       setInitTimer(true);
       setBtnName('Stop');
@@ -56,7 +78,8 @@ function Cronometer() {
     }
   }
 
-  const handleTurn = () => {
+  function handleTurn() {
+    console.log(teste)
     setAllTurns([...allTurns, count].sort((a, b) => b - a));
     reserveTimeCalc();
     setNewCount(0);
@@ -83,6 +106,7 @@ function Cronometer() {
     setAllTurns([])
   }
 
+
   function sendWorkTime(event) {
     if (radio === 'SbyS') {
       const resultSbyS = Number(event.target.value)
@@ -105,33 +129,37 @@ function Cronometer() {
 
   }
 
+  function botao() {
+    setTrigger(trigger + 1)
+  }
+
   return (
     <div>
       {initTimer && startTimer()}
       {initTimer && startTurn()}
       <Radios
-        handleRadio={ handleRadio }
-        radio={ radio }
+        handleRadio={handleRadio}
+        radio={radio}
       />
-      <TaskTime 
-        totalTime= { totalTime } 
-        setTotalTime = { setTotalTime } 
+      <TaskTime
+        totalTime={totalTime}
+        setTotalTime={setTotalTime}
       />
       <p>
-        Reserved time: { timeReserve }
+        Reserved time: {timeReserve}
       </p>
-      <p 
+      <p
         className="count"
-      > 
-        { count } 
+      >
+        {count}
       </p>
-      <Buttons 
-        start={ start }
-        btnName={ btnName }
-        radio={ radio }
-        totalTime = { totalTime }
-        handleTurn= { handleTurn }
-        resetTimer= { resetTimer }
+      <Buttons
+        start={start}
+        btnName={btnName}
+        radio={radio}
+        totalTime={totalTime}
+        handleTurn={handleTurn}
+        resetTimer={resetTimer}
       />
       <section id="section__newcounter">
         <p
@@ -140,20 +168,29 @@ function Cronometer() {
           {initTurn ? newCount2 : newCount}
         </p>
       </section>
-      <TurnList 
-        allTurns={ allTurns } 
-        handleDelete={ handleDelete } 
-        sendWorkTime={ sendWorkTime }
+      <TurnList
+        allTurns={allTurns}
+        handleDelete={handleDelete}
+        sendWorkTime={sendWorkTime}
       />
-     <Table 
-       handleChange={ handleChange }
-       workTimeSByS={ workTimeSByS }
-       taskQuantSByS={ taskQuantSByS } 
-       workTimeXp={ workTimeXp }
-       taskQuantXp={ taskQuantXp } 
-     />
+      <Table
+        handleChange={handleChange}
+        workTimeSByS={workTimeSByS}
+        taskQuantSByS={taskQuantSByS}
+        workTimeXp={workTimeXp}
+        taskQuantXp={taskQuantXp}
+      />
     </div >
   )
 }
 
-export default Cronometer
+export function getServerSideProps({ req, res}) {
+  // const resp = parseCookies(context)
+  return {
+    props: {
+      teste:'seu'
+    }
+  }
+
+}
+

@@ -1,15 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
-import Cronometer from '../components/Cronometer/Cronometer';
+import { Cronometer } from '../components/Cronometer/Cronometer';
+import { parseCookies } from 'nookies';
 
 
-export default function Home() {
-  const [ teste, setTeste ] = useState('des');
-  function seting (){
-    console.log('teste')
-    setTeste('asdasdasd')
-  }
+export default function Home({ data, teste }) {
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,18 +22,21 @@ export default function Home() {
         </h1>
 
         <div className={styles.grid}>
-          <Cronometer />
+          <Cronometer data={data} teste={teste} />
         </div>
       </main>
-
     </div>
   )
 }
 
-export function getStaticProps() {
+
+export function getServerSideProps(context) {
+  const resp = parseCookies(context)
   return {
     props: {
-      name: 'eu',
+      data: resp.data,
+      teste: 'junior'
     }
   }
+
 }
