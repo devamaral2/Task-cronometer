@@ -23,3 +23,21 @@ a {
 .radio {
   width: 6rem;
 }
+
+.input__name .inputs { 
+  height: 50px;
+  font-size: 30px;
+  width: 100px;
+  background-color: red;
+  color: aliceblue;
+}
+
+.input__name {
+  font-size: 24px;
+}
+
+.turn__button {
+  height: 50px;
+  width: 70px;
+  font-size: 24px;
+}

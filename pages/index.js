@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Cronometer } from '../components/Cronometer/Cronometer';
-import { parseCookies } from 'nookies';
 
 
-export default function Home({ data, teste }) {
+export default function Home() {
 
 
 
@@ -22,21 +21,10 @@ export default function Home({ data, teste }) {
         </h1>
 
         <div className={styles.grid}>
-          <Cronometer data={data} teste={teste} />
+          <Cronometer />
         </div>
       </main>
     </div>
   )
 }
 
-
-export function getServerSideProps(context) {
-  const resp = parseCookies(context)
-  return {
-    props: {
-      data: resp.data,
-      teste: 'junior'
-    }
-  }
-
-}

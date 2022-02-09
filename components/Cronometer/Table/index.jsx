@@ -28,19 +28,6 @@ class Table extends React.Component {
           </td>
         </tr>
         <tr>
-          <td>SbyS</td><td><input
-            className="inputs"
-            name="workTimeSByS"
-            onChange={handleChange}
-            value={ workTimeSByS.toFixed(2) }
-          /></td><td><input
-            className="inputs"
-            name="taskQuantSByS"
-            onChange={handleChange}
-            value={taskQuantSByS}
-          /></td>
-        </tr>
-        <tr>
           <td>Xp</td><td><input
             className="inputs"
             name="workTimeXp"
@@ -49,8 +36,21 @@ class Table extends React.Component {
           /></td><td><input
             className="inputs"
             name="taskQuantXp"
-            onChange={handleChange}
+            onChange={ handleChange }
             value={taskQuantXp}
+          /></td>
+        </tr>
+        <tr>
+          <td>SbyS</td><td><input
+            className="inputs"
+            name="workTimeSByS"
+            onChange={ handleChange }
+            value={ workTimeSByS.toFixed(2) }
+          /></td><td><input
+            className="inputs"
+            name="taskQuantSByS"
+            onChange={ handleChange }
+            value={ taskQuantSByS }
           /></td>
         </tr>
       </table>
