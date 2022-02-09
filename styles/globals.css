@@ -27,8 +27,8 @@ a {
   height: 50px;
   font-size: 30px;
   width: 100px;
-  background-color: red;
-  color: aliceblue;
+  background-color:aliceblue;
+  color: red;
 }
 
 .input__name {
