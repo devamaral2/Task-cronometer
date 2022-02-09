@@ -143,7 +143,7 @@ export function Cronometer() {
   }
 
   return (
-    <div>
+    <div className='timer'>
       {initTimer && startTimer()}
       {initTimer && startTurn()}
       <Radios
@@ -152,23 +152,26 @@ export function Cronometer() {
         xpClass={ xpClass }
         sbysClass={ sbysClass }
       />
+        <p>
+          Reserved time:
+        </p>
+        <p>
+          {timeReserve}
+        </p>
       <TaskTime
         totalTime={ totalTime }
         setTotalTime={ setTotalTime }
         radio={ radio }
         handleTurn={ handleTurn }
-      />
-      <p>
-        Reserved time:
-      </p>
-      <h3>
-        {timeReserve}
-      </h3>
-        <h2
+        />
+        <h2>
+          {Number(timeReserve) + Number(totalTime)}
+        </h2>
+        <h1
           className="count-turn"
         >
           {initTurn ? newCount2 : newCount}
-        </h2>
+        </h1>
       <p
         className="count"
       >
