@@ -21,8 +21,8 @@ export function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
-  const [sbysClass, setSbysClass] = useState('radio-label')
-  const [xpClass, setXpClass] = useState('radio-label')
+  const [sbysClass, setSbysClass] = useState('radio-label white')
+  const [xpClass, setXpClass] = useState('radio-label white')
   
   useEffect(() => {
     const data = localStorage.getItem('data')
@@ -92,12 +92,12 @@ export function Cronometer() {
     if (event.target.id === 'radioSbyS') {
       setRadio('SbyS'); 
       setSbysClass('radio-label brown');
-      setXpClass('radio-label')
+      setXpClass('radio-label white')
     }
     if (event.target.id === 'radioXp') {
       setRadio('Xp'); 
       setXpClass('radio-label brown');
-      setSbysClass('radio-label')
+      setSbysClass('radio-label white')
     }
   }
 
@@ -159,24 +159,38 @@ export function Cronometer() {
         handleTurn={ handleTurn }
       />
       <p>
-        Reserved time: {timeReserve}
+        Reserved time:
       </p>
-        <p
-          className="count"
+      <h3>
+        {timeReserve}
+      </h3>
+        <h2
+          className="count-turn"
         >
           {initTurn ? newCount2 : newCount}
-        </p>
+        </h2>
       <p
         className="count"
       >
         {count}
       </p>
+      <div 
+      className='container'
+      >
+
       <button
+          className='button'
           onClick={ start }
         >
           { btnName }
         </button>
-        <button onClick={ resetTimer }>Reset</button>
+        <button 
+          className='button'
+          onClick={ resetTimer }
+        >
+          Reset
+        </button>
+      </div>
       <section id="section__newcounter">
       </section>
       <TurnList

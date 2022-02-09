@@ -10,7 +10,7 @@ class TaskTime extends React.Component {
     } = this.props;
 
     return (
-      <>
+      <div className="container">
         <label
           className="input__name"
           htmlFor='tasktime'
@@ -25,13 +25,13 @@ class TaskTime extends React.Component {
           />
         </label>
         <button
-          className="turn__button"
+          className="turn-button button"
           disabled={(radio === '' || totalTime === 0) ? true : false}
           onClick={handleTurn}
         >
           turn
         </button>
-      </>
+      </div>
     )
   }
 }

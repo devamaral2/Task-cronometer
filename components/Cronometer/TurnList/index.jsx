@@ -7,18 +7,23 @@ class TurnList extends React.Component {
   return (
     <ol reversed id="list">
       {allTurns.map((turn) => (
-        <li className='turn' key={ turn} >
+        <li 
+          className='turn' 
+          key={ turn} 
+        >
           { turn }
           <button
+            className="delete-button"
             onClick={ handleDelete }
           >
-            delete
+            x
           </button>
           <button
+          className="send-button"
             onClick={ sendWorkTime }
             value={turn}
           >
-            send this time
+            send
           </button>
         </li>
         ))

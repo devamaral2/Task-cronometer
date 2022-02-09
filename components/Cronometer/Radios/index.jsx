@@ -12,35 +12,33 @@ class Radios extends React.Component {
     return (
       <div >
         <label className="radio-conteiner" htmlFor='radio'>
-          <div
-            className={ sbysClass }
+          <label
+            className={sbysClass}
+
           >
-            <label
-            >
-              SbyS
-              <input
-                className="radio"
-                type="radio"
-                id="radioSbyS"
-                name="radio"
-                onChange={ handleRadio }
-                value={radio}
-              />
-            </label>
-          </div>
-            <div className= { xpClass }>
-          <label>
-              Xp
+            SbyS
+            <input
+              className="radio"
+              type="radio"
+              id="radioSbyS"
+              name="radio"
+              onChange={handleRadio}
+              value={radio}
+            />
+          </label>
+
+          <label className={xpClass}>
+            Xp
             <input
               className="radio"
               type="radio"
               id="radioXp"
               name="radio"
-              onChange={ handleRadio }
-              value={ radio }
-              />
+              onChange={handleRadio}
+              value={radio}
+            />
           </label>
-              </div>
+
         </label>
         <br />
       </div>
