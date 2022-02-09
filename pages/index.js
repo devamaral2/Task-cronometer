@@ -15,12 +15,16 @@ export default function Home() {
         <link rel="icon" href="/clock-svgrepo-com.svg" />
       </Head>
 
-      <main className={styles.main}>
+      <main 
+        className={styles.main}
+      >
         <h1 className={styles.title}>
           Task timer
         </h1>
 
-        <div className={styles.grid}>
+        <div 
+          className={styles.grid}
+        >
           <Cronometer />
         </div>
       </main>

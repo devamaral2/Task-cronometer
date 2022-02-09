@@ -21,6 +21,8 @@ export function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
+  const [sbysClass, setSbysClass] = useState('radio-label')
+  const [xpClass, setXpClass] = useState('radio-label')
   
   useEffect(() => {
     const data = localStorage.getItem('data')
@@ -87,8 +89,16 @@ export function Cronometer() {
   }
 
   function handleRadio(event) {
-    if (event.target.id === 'radioSbyS') setRadio('SbyS')
-    if (event.target.id === 'radioXp') setRadio('Xp')
+    if (event.target.id === 'radioSbyS') {
+      setRadio('SbyS'); 
+      setSbysClass('radio-label brown');
+      setXpClass('radio-label')
+    }
+    if (event.target.id === 'radioXp') {
+      setRadio('Xp'); 
+      setXpClass('radio-label brown');
+      setSbysClass('radio-label')
+    }
   }
 
   function handleDelete(event) {
@@ -139,6 +149,8 @@ export function Cronometer() {
       <Radios
         handleRadio={ handleRadio }
         radio={ radio }
+        xpClass={ xpClass }
+        sbysClass={ sbysClass }
       />
       <TaskTime
         totalTime={ totalTime }

@@ -16,12 +16,9 @@ a {
   margin: 5px;
 }
 
-.radio__label {
-  font-size: 2rem;
-}
 
 .radio {
-  width: 6rem;
+  display: none;
 }
 
 .input__name .inputs { 
@@ -40,4 +37,36 @@ a {
   height: 50px;
   width: 70px;
   font-size: 24px;
+}
+
+.radio-label:hover {
+  transition: color 200ms;
+  background-color: brown;
+  color:aliceblue;
+}
+
+
+.radio-label {
+  font-size: 2rem;
+  border: black 2px solid;
+  width: 25%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.radio-conteiner {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+}
+
+
+.brown {
+  background-color: brown;
+  color:aliceblue;
+}
+
+.inputs {
+  width: 60px;
 }
