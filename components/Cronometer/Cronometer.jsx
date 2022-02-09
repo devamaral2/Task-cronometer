@@ -167,11 +167,11 @@ export function Cronometer() {
         <h2>
           {Number(timeReserve) + Number(totalTime)}
         </h2>
-        <h1
+        <h2
           className="count-turn"
         >
           {initTurn ? newCount2 : newCount}
-        </h1>
+        </h2>
       <p
         className="count"
       >
