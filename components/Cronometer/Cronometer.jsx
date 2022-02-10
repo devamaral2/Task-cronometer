@@ -21,26 +21,27 @@ export function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
-  const [sbysClass, setSbysClass] = useState('radio-label white')
-  const [xpClass, setXpClass] = useState('radio-label white')
-  
+  const [sbysClass, setSbysClass] = useState('radio-label')
+  const [xpClass, setXpClass] = useState('radio-label')
+  const [startClass, setStartClass] = useState('button green')
+
   useEffect(() => {
     const data = localStorage.getItem('data')
     if (data) {
-    const dataParsed = JSON.parse(data)
-    setWorkTimeSByB(dataParsed.workTimeSByS)
-    setWorkTimeXp(dataParsed.workTimeXp)
-    setTaskQuantSByB(dataParsed.taskQuantSByS)
-    setTaskQuantXp(dataParsed.taskQuantXp)
-    setTimeReserve(dataParsed.timeReserve)
+      const dataParsed = JSON.parse(data)
+      setWorkTimeSByB(dataParsed.workTimeSByS)
+      setWorkTimeXp(dataParsed.workTimeXp)
+      setTaskQuantSByB(dataParsed.taskQuantSByS)
+      setTaskQuantXp(dataParsed.taskQuantXp)
+      setTimeReserve(dataParsed.timeReserve)
     }
   }, [])
 
   useEffect(() => {
     const data = {
       taskQuantSByS: taskQuantSByS || 0,
-      taskQuantXp: taskQuantXp || 0, 
-      workTimeSByS: workTimeSByS || 0, 
+      taskQuantXp: taskQuantXp || 0,
+      workTimeSByS: workTimeSByS || 0,
       workTimeXp: workTimeXp || 0,
       timeReserve: timeReserve || 0,
     }
@@ -74,9 +75,11 @@ export function Cronometer() {
     if (!initTimer) {
       setInitTimer(true);
       setBtnName('Stop');
+      setStartClass('button blue')
     } else {
       setInitTimer(false);
       setBtnName('start');
+      setStartClass('button green')
     }
   }
 
@@ -90,14 +93,14 @@ export function Cronometer() {
 
   function handleRadio(event) {
     if (event.target.id === 'radioSbyS') {
-      setRadio('SbyS'); 
+      setRadio('SbyS');
       setSbysClass('radio-label brown');
-      setXpClass('radio-label white')
+      setXpClass('radio-label')
     }
     if (event.target.id === 'radioXp') {
-      setRadio('Xp'); 
+      setRadio('Xp');
       setXpClass('radio-label brown');
-      setSbysClass('radio-label white')
+      setSbysClass('radio-label')
     }
   }
 
@@ -142,54 +145,61 @@ export function Cronometer() {
     setTrigger(trigger + 1)
   }
 
+  function cleaning() {
+    setWorkTimeSByB(0);
+    setWorkTimeXp(0);
+    setTaskQuantXp(0);
+    setTaskQuantSByB(0);
+  }
+
   return (
     <div className='timer'>
       {initTimer && startTimer()}
       {initTimer && startTurn()}
       <Radios
-        handleRadio={ handleRadio }
-        radio={ radio }
-        xpClass={ xpClass }
-        sbysClass={ sbysClass }
+        handleRadio={handleRadio}
+        radio={radio}
+        xpClass={xpClass}
+        sbysClass={sbysClass}
       />
-        <p>
-          Reserved time:
-        </p>
-        <p>
-          {timeReserve}
-        </p>
+      <p>
+        Reserved time:
+      </p>
+      <p>
+        {timeReserve}
+      </p>
       <TaskTime
-        totalTime={ totalTime }
-        setTotalTime={ setTotalTime }
-        radio={ radio }
-        handleTurn={ handleTurn }
-        />
-        <h2>
-          {Number(timeReserve) + Number(totalTime)}
-        </h2>
-        <h2
-          className="count-turn"
-        >
-          {initTurn ? newCount2 : newCount}
-        </h2>
+        totalTime={totalTime}
+        setTotalTime={setTotalTime}
+        radio={radio}
+        handleTurn={handleTurn}
+      />
+      <h2>
+        {Number(timeReserve) + Number(totalTime)}
+      </h2>
+      <h2
+        className="count-turn"
+      >
+        {initTurn ? newCount2 : newCount}
+      </h2>
       <p
         className="count"
       >
         {count}
       </p>
-      <div 
-      className='container'
+      <div
+        className='container'
       >
 
-      <button
-          className='button'
-          onClick={ start }
+        <button
+          className={ startClass }
+          onClick={start}
         >
-          { btnName }
+          {btnName}
         </button>
-        <button 
-          className='button'
-          onClick={ resetTimer }
+        <button
+          className='button reset'
+          onClick={resetTimer}
         >
           Reset
         </button>
@@ -201,13 +211,22 @@ export function Cronometer() {
         handleDelete={handleDelete}
         sendWorkTime={sendWorkTime}
       />
-      <Table
-        handleChange={handleChange}
-        workTimeSByS={workTimeSByS}
-        taskQuantSByS={taskQuantSByS}
-        workTimeXp={workTimeXp}
-        taskQuantXp={taskQuantXp}
-      />
+      <section className="table-button">
+
+        <Table
+          handleChange={handleChange}
+          workTimeSByS={workTimeSByS}
+          taskQuantSByS={taskQuantSByS}
+          workTimeXp={workTimeXp}
+          taskQuantXp={taskQuantXp}
+        />
+        <button
+          className="button reset"
+          onClick={cleaning}
+        >
+          Clear
+        </button>
+      </section>
     </div >
   )
 }

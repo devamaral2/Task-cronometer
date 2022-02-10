@@ -11,49 +11,27 @@ class Table extends React.Component {
     } = this.props;
 
     return (
-      <table>
-        <tr>
-          <td>
-            Task
-          </td>
-          <td
-            className="table__title"
-          >
-            tempo
-          </td>
-          <td
-            className="table__title"
-          >
-            quantidade
-          </td>
+      <table className="table content-table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>tempo</th>
+            <th>quantidade</th>
+          </tr>
+        </thead>
+          <tbody>
+        <tr className="table-middle">
+          <td>Xp</td>
+          <td>{ workTimeXp.toFixed(2) }</td>
+          <td>{ taskQuantXp }</td>
         </tr>
         <tr>
-          <td>Xp</td><td><input
-            className="inputs"
-            name="workTimeXp"
-            onChange={handleChange}
-            value={ workTimeXp.toFixed(2) }
-          /></td><td><input
-            className="inputs"
-            name="taskQuantXp"
-            onChange={ handleChange }
-            value={taskQuantXp}
-          /></td>
+          <td>SbyS</td>
+          <td>{ workTimeSByS.toFixed(2) }</td>
+          <td>{ taskQuantSByS }</td>
         </tr>
-        <tr>
-          <td>SbyS</td><td><input
-            className="inputs"
-            name="workTimeSByS"
-            onChange={ handleChange }
-            value={ workTimeSByS.toFixed(2) }
-          /></td><td><input
-            className="inputs"
-            name="taskQuantSByS"
-            onChange={ handleChange }
-            value={ taskQuantSByS }
-          /></td>
-        </tr>
-      </table>
+          </tbody>
+      </table >
     )
   }
 }

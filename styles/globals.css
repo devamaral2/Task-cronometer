@@ -40,6 +40,7 @@ a {
   height: 50px;
   width: 80px;
   font-size: 24px;
+  border-radius: 5px;
 }
 
 .radio-label:hover {
@@ -58,10 +59,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.white {
-cursor: pointer;
 }
 
 .radio-conteiner {
@@ -127,3 +124,67 @@ ol {
 .timer {
   width: 100%;
 }
+
+.reset {
+  background-color: red;
+  color: aliceblue;
+}
+
+.table-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.green {
+  background-color: green;
+  color: aliceblue;
+}
+
+.blue {
+  background-color: blue;
+  color: aliceblue;
+}
+
+* {
+  font-family: sans-serif; /* Change your font family */
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 280px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color:aliceblue;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color:aliceblue;
+  color: black;
+}
+
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.table-middle {
+  border: solid 3px aliceblue;
+}
+
