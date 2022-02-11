@@ -6,26 +6,27 @@ class TaskTime extends React.Component {
       radio,
       totalTime, 
       setTotalTime, 
-      handleTurn,    
+      handleTurn,
+      timeReserve,    
     } = this.props;
 
     return (
-      <div className="container">
-        <label
-          className="input__name"
-          htmlFor='tasktime'
-        >
-          Task time:
+      <div className="flex justify-items-center p-0 container m-0 h-31">
+       
+        <div className="flex justify-center items-center w-4/12 h-1/2 text-4xl bg-slate-200 m-4 text-black rounded">
+        <p>
+          {(Number(timeReserve) + Number(totalTime)).toFixed(2)}
+          </p>
+      </div>
           <input
             onChange={(event) => setTotalTime(event.target.value)}
             value={totalTime}
             type="number"
-            className="inputs"
+            className="w-2/12 h-1/2 text-4xl text-red-800 m-4 bg-slate-200 rounded"
             name="task-time"
           />
-        </label>
         <button
-          className="turn-button button"
+          className="w-2/12 h-1/2 text-3xl text-black m-4 bg-slate-200 rounded disabled:opacity-50"
           disabled={(radio === '' || totalTime === 0) ? true : false}
           onClick={handleTurn}
         >

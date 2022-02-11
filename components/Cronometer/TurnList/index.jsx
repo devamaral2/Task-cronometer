@@ -5,21 +5,25 @@ class TurnList extends React.Component {
   const { handleDelete, allTurns, sendWorkTime } = this.props;
   
   return (
-    <ol reversed id="list">
+    <ol
+      className="flex flex-col justify-center w-full container m-0 p-8" 
+      reversed 
+      id="list"
+    >
       {allTurns.map((turn) => (
         <li 
-          className='turn' 
+          className="text-slate-200 w-full list-decimal p-1 text-lg" 
           key={ turn} 
         >
           { turn }
           <button
-            className="delete-button"
+            className="text-black bg-slate-200 w-6 h-6 ml-8 rounded-full"
             onClick={ handleDelete }
           >
             x
           </button>
           <button
-          className="send-button"
+          className="w-12 h-6 text-black m-4 bg-slate-200 rounded"
             onClick={ sendWorkTime }
             value={turn}
           >

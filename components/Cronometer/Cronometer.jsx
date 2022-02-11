@@ -7,6 +7,8 @@ import Radios from './Radios';
 
 export function Cronometer() {
 
+  const radioClasses = "flex justify-center items-center w-3/12 h-1/2 text-4xl bg-black border-2  m-4 text-slate-200 rounded hover:cursor-pointer hover:bg-slate-50 hover:text-black transition duration-200 ease-in"
+  const radioClassesSelected = "flex justify-center items-center w-3/12 h-1/2 text-4xl border-2  m-4 rounded bg-slate-200 text-black"
   const [count, setCount] = useState(0);
   const [initTimer, setInitTimer] = useState(false);
   const [btnName, setBtnName] = useState('Start');
@@ -21,9 +23,9 @@ export function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
-  const [sbysClass, setSbysClass] = useState('radio-label')
-  const [xpClass, setXpClass] = useState('radio-label')
-  const [startClass, setStartClass] = useState('button green')
+  const [sbysClass, setSbysClass] = useState(radioClasses)
+  const [xpClass, setXpClass] = useState(radioClasses)
+  const [startClass, setStartClass] = useState('bg-green-800 w-20 h-20 rounded-full text-xl')
 
   useEffect(() => {
     const data = localStorage.getItem('data')
@@ -75,11 +77,11 @@ export function Cronometer() {
     if (!initTimer) {
       setInitTimer(true);
       setBtnName('Stop');
-      setStartClass('button blue')
+      setStartClass('bg-red-800 w-20 h-20 rounded-full text-xl')
     } else {
       setInitTimer(false);
       setBtnName('start');
-      setStartClass('button green')
+      setStartClass('bg-green-800 w-20 h-20 rounded-full text-xl')
     }
   }
 
@@ -94,30 +96,20 @@ export function Cronometer() {
   function handleRadio(event) {
     if (event.target.id === 'radioSbyS') {
       setRadio('SbyS');
-      setSbysClass('radio-label brown');
-      setXpClass('radio-label')
+
+      setSbysClass(radioClassesSelected);
+      setXpClass(radioClasses)
     }
     if (event.target.id === 'radioXp') {
       setRadio('Xp');
-      setXpClass('radio-label brown');
-      setSbysClass('radio-label')
+      setXpClass(radioClassesSelected);
+      setSbysClass(radioClasses)
     }
   }
 
   function handleDelete(event) {
     event.target.parentNode.remove();
   }
-
-  function resetTimer() {
-    setInitTimer(false)
-    setTimeout(() => {
-      setNewCount(0)
-      setNewCount2(0)
-      setCount(0);
-    }, 101);
-    setAllTurns([])
-  }
-
 
   function sendWorkTime(event) {
     if (radio === 'SbyS') {
@@ -141,10 +133,6 @@ export function Cronometer() {
 
   }
 
-  function botao() {
-    setTrigger(trigger + 1)
-  }
-
   function cleaning() {
     setWorkTimeSByB(0);
     setWorkTimeXp(0);
@@ -153,7 +141,7 @@ export function Cronometer() {
   }
 
   return (
-    <div className='timer'>
+    <div className=''>
       {initTimer && startTimer()}
       {initTimer && startTurn()}
       <Radios
@@ -162,56 +150,45 @@ export function Cronometer() {
         xpClass={xpClass}
         sbysClass={sbysClass}
       />
-      <p>
-        Reserved time:
-      </p>
-      <p>
-        {timeReserve}
-      </p>
       <TaskTime
         totalTime={totalTime}
         setTotalTime={setTotalTime}
         radio={radio}
         handleTurn={handleTurn}
+        timeReserve={timeReserve}
       />
-      <h2>
-        {Number(timeReserve) + Number(totalTime)}
-      </h2>
-      <h2
-        className="count-turn"
-      >
-        {initTurn ? newCount2 : newCount}
-      </h2>
-      <p
-        className="count"
-      >
-        {count}
-      </p>
-      <div
-        className='container'
-      >
+      <div className='m-0 p-5'>
 
-        <button
-          className={ startClass }
-          onClick={start}
+        <h2
+          className="text-3xl"
         >
-          {btnName}
-        </button>
-        <button
-          className='button reset'
-          onClick={resetTimer}
+          {initTurn ? newCount2 : newCount}
+        </h2>
+        <p
+          className="text-xl"
         >
-          Reset
-        </button>
+          {count}
+        </p>
       </div>
-      <section id="section__newcounter">
-      </section>
+      <div
+        className="container m-0"
+      >
+        <div className="container m0 p-4">
+
+          <button
+            className={ startClass }
+            onClick={ start }
+          >
+            { btnName }
+          </button>
+        </div>
+      </div>
       <TurnList
         allTurns={allTurns}
         handleDelete={handleDelete}
         sendWorkTime={sendWorkTime}
       />
-      <section className="table-button">
+      <section className="flex justify-around container m-0">
 
         <Table
           handleChange={handleChange}
@@ -221,7 +198,7 @@ export function Cronometer() {
           taskQuantXp={taskQuantXp}
         />
         <button
-          className="button reset"
+          className="w-2/12 h-1/2 text-3xl text-black m-4 bg-red-800 rounded"
           onClick={cleaning}
         >
           Clear
