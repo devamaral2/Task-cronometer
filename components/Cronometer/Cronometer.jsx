@@ -87,7 +87,13 @@ export function Cronometer() {
   }
 
   function handleTurn() {
-    setAllTurns([...allTurns, count].sort((a, b) => b - a));
+    const data = {
+      count,
+      newCount,
+      newCount2,
+      totalTime,
+    }
+    setAllTurns([...allTurns, data].sort((a, b) => b.count- a.count));
     reserveTimeCalc();
     setNewCount(0);
     setNewCount2(0);
@@ -199,7 +205,7 @@ export function Cronometer() {
           taskQuantXp={taskQuantXp}
         />
         <button
-          className="w-2/12 h-1/2 text-3xl text-black m-4 bg-red-800 rounded"
+          className="w-2/12 h-1/2 text-2xl text-slate-200 m-4 bg-red-800 rounded"
 
           onClick={cleaning}
         >

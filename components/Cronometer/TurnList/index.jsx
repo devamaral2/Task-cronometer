@@ -15,12 +15,12 @@ class TurnList extends React.Component {
           className="text-slate-200 w-full list-decimal p-1 text-lg" 
           key={ turn} 
         >
-          { turn }
+          { turn.count.toFixed(2) } -- { turn.newCount.toFixed(2) } - { turn.newCount2.toFixed(2) } -- { turn.totalTime }
           <button
-            className="text-black bg-slate-200 w-6 h-6 ml-8 rounded-full"
+            className="text-black text-xl font-bold bg-slate-200 w-6 h-6 ml-8 rounded"
             onClick={ handleDelete }
           >
-            x
+            -
           </button>
           <button
           className="w-12 h-6 text-black m-4 bg-slate-200 rounded"
