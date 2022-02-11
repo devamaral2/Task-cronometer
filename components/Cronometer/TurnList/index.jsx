@@ -6,7 +6,7 @@ class TurnList extends React.Component {
   
   return (
     <ol
-      className="flex flex-col justify-center w-full container m-0 p-8" 
+      className="w-full container m-0 p-8 flex flex-col" 
       reversed 
       id="list"
     >

@@ -63,7 +63,6 @@ body {
   width: 100%;
 }
 
-
 .table-button {
   display: flex;
   align-items: center;
@@ -125,3 +124,4 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+

@@ -23,9 +23,9 @@ export function Cronometer() {
   const [workTimeXp, setWorkTimeXp] = useState(0);
   const [taskQuantSByS, setTaskQuantSByB] = useState(0);
   const [taskQuantXp, setTaskQuantXp] = useState(0);
-  const [sbysClass, setSbysClass] = useState(radioClasses)
-  const [xpClass, setXpClass] = useState(radioClasses)
-  const [startClass, setStartClass] = useState('bg-green-800 w-20 h-20 rounded-full text-xl')
+  const [sbysClass, setSbysClass] = useState(radioClasses);
+  const [xpClass, setXpClass] = useState(radioClasses);
+  const [startClass, setStartClass] = useState('bg-green-800 w-20 h-20 rounded-full text-xl');
 
   useEffect(() => {
     const data = localStorage.getItem('data')
@@ -82,6 +82,7 @@ export function Cronometer() {
       setInitTimer(false);
       setBtnName('start');
       setStartClass('bg-green-800 w-20 h-20 rounded-full text-xl')
+
     }
   }
 
@@ -104,6 +105,7 @@ export function Cronometer() {
       setRadio('Xp');
       setXpClass(radioClassesSelected);
       setSbysClass(radioClasses)
+
     }
   }
 
@@ -150,6 +152,7 @@ export function Cronometer() {
         xpClass={xpClass}
         sbysClass={sbysClass}
       />
+
       <TaskTime
         totalTime={totalTime}
         setTotalTime={setTotalTime}
@@ -174,7 +177,6 @@ export function Cronometer() {
         className="container m-0"
       >
         <div className="container m0 p-4">
-
           <button
             className={ startClass }
             onClick={ start }
@@ -189,7 +191,6 @@ export function Cronometer() {
         sendWorkTime={sendWorkTime}
       />
       <section className="flex justify-around container m-0">
-
         <Table
           handleChange={handleChange}
           workTimeSByS={workTimeSByS}
@@ -199,6 +200,7 @@ export function Cronometer() {
         />
         <button
           className="w-2/12 h-1/2 text-3xl text-black m-4 bg-red-800 rounded"
+
           onClick={cleaning}
         >
           Clear
