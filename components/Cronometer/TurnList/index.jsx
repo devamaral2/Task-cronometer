@@ -25,7 +25,7 @@ class TurnList extends React.Component {
           <button
           className="w-12 h-6 text-black m-4 bg-slate-200 rounded"
             onClick={ sendWorkTime }
-            value={turn}
+            value={ turn.count.toFixed(2) }
           >
             send
           </button>
