@@ -171,12 +171,12 @@ export function Cronometer() {
         <h2
           className="text-3xl"
         >
-          {initTurn ? newCount2 : newCount}
+          {initTurn ? parseFloat(newCount2).toFixed(2) : parseFloat(newCount).toFixed(2) }
         </h2>
         <p
           className="text-xl"
         >
-          {count}
+          { parseFloat(count).toFixed(2) }
         </p>
       </div>
       <div
