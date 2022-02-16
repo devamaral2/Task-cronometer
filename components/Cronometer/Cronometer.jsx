@@ -166,10 +166,10 @@ export function Cronometer() {
         handleTurn={handleTurn}
         timeReserve={timeReserve}
       />
-      <div className='m-0 p-5'>
+      <div className='m-10 p-0 text-center'>
 
         <h2
-          className="text-3xl"
+          className="text-5xl"
         >
           {initTurn ? parseFloat(newCount2).toFixed(2) : parseFloat(newCount).toFixed(2) }
         </h2>
