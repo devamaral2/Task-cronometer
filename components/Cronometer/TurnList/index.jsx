@@ -10,10 +10,11 @@ class TurnList extends React.Component {
       reversed 
       id="list"
     >
-      {allTurns.map((turn) => (
+      {allTurns.map((turn, index) => (
         <li 
           className="text-slate-200 w-full list-decimal p-1 text-lg" 
-          key={ turn} 
+          key={ index } 
+          value={ index }
         >
           { turn.count.toFixed(2) } -- { turn.newCount.toFixed(2) } - { turn.newCount2.toFixed(2) } -- { turn.totalTime }
           <button

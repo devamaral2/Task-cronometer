@@ -115,8 +115,9 @@ export function Cronometer() {
     }
   }
 
-  function handleDelete(event) {
-    event.target.parentNode.remove();
+  function handleDelete({ target: {parentNode: { value }} }) {
+    allTurns.splice(value, 1)
+    setAllTurns(allTurns)
   }
 
   function sendWorkTime(event) {

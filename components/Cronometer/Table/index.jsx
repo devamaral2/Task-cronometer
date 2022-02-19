@@ -22,12 +22,12 @@ class Table extends React.Component {
           <tbody>
         <tr className="table-middle">
           <td>Xp</td>
-          <td>{ workTimeXp.toFixed(2) }</td>
+          <td>{ parseFloat(workTimeXp).toFixed(2) }</td>
           <td>{ taskQuantXp }</td>
         </tr>
         <tr>
           <td>SbyS</td>
-          <td>{ workTimeSByS.toFixed(2) }</td>
+          <td>{ parseFloat(workTimeSByS).toFixed(2) }</td>
           <td>{ taskQuantSByS }</td>
         </tr>
           </tbody>
