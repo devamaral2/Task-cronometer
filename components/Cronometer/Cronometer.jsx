@@ -25,7 +25,10 @@ export function Cronometer() {
   const [taskQuantXp, setTaskQuantXp] = useState(0);
   const [sbysClass, setSbysClass] = useState(radioClasses);
   const [xpClass, setXpClass] = useState(radioClasses);
-  const [startClass, setStartClass] = useState('bg-green-800 w-20 h-20 rounded-full text-xl');
+  const [startClass, setStartClass] = useState('bg-green-800 w-20 h-20 rounded-full text-xl hover:bg-green-600 hover:opacity-80');
+  // const [date, setDate] = useState(0)
+  // const [startCounting, setStartCounting] = useState('')
+  // const [firstTime, setFirstTime] = useState(true)
 
   useEffect(() => {
     const data = localStorage.getItem('data')
@@ -57,6 +60,7 @@ export function Cronometer() {
   }
 
   function startTurn() {
+
     if (initTurn) {
       setTimeout(() => {
         setNewCount2(newCount2 + 0.00166666667);
@@ -68,6 +72,14 @@ export function Cronometer() {
       }, 100);
     }
   }
+
+  // function dateTimer() {
+  //   setTimeout(() => {
+  //     setDate(((Number(Date.now()) - Number(startCounting)) / 100000) * 1.66666667);
+  //   }, 100);
+  // }
+
+
   function reserveTimeCalc() {
     if (initTurn) setTimeReserve(timeReserve + (totalTime - newCount2))
     if (!initTurn) setTimeReserve(timeReserve + (totalTime - newCount))
@@ -75,25 +87,31 @@ export function Cronometer() {
 
   function start() {
     if (!initTimer) {
+      // if (firstTime) {
+      //   setStartCounting(Date.now())
+      //   setFirstTime(false)
+      // }
       setInitTimer(true);
       setBtnName('Stop');
-      setStartClass('bg-red-800 w-20 h-20 rounded-full text-xl')
+      setStartClass('bg-red-800 w-20 h-20 rounded-full text-xl hover:bg-red-600 hover:opacity-80')
     } else {
       setInitTimer(false);
       setBtnName('start');
-      setStartClass('bg-green-800 w-20 h-20 rounded-full text-xl')
+      setStartClass('bg-green-800 w-20 h-20 rounded-full text-xl hover:bg-green-600 hover:opacity-80')
 
     }
   }
 
   function handleTurn() {
+    // setStartCounting(Date.now());
     const data = {
       count,
       newCount,
       newCount2,
       totalTime,
+      initTurn,
     }
-    setAllTurns([...allTurns, data].sort((a, b) => b.count- a.count));
+    setAllTurns([...allTurns, data].sort((a, b) => b.count - a.count));
     reserveTimeCalc();
     setNewCount(0);
     setNewCount2(0);
@@ -115,7 +133,7 @@ export function Cronometer() {
     }
   }
 
-  function handleDelete({ target: {parentNode: { value }} }) {
+  function handleDelete({ target: { parentNode: { value } } }) {
     allTurns.splice(value, 1)
     setAllTurns(allTurns)
   }
@@ -153,6 +171,7 @@ export function Cronometer() {
     <div className=''>
       {initTimer && startTimer()}
       {initTimer && startTurn()}
+      {/* {initTimer && dateTimer()} */}
       <Radios
         handleRadio={handleRadio}
         radio={radio}
@@ -172,12 +191,13 @@ export function Cronometer() {
         <h2
           className="text-5xl"
         >
-          {initTurn ? parseFloat(newCount2).toFixed(2) : parseFloat(newCount).toFixed(2) }
+          {/* {parseFloat(date).toFixed(2)} */}
+          {initTurn ? parseFloat(newCount2).toFixed(2) : parseFloat(newCount).toFixed(2)}
         </h2>
-        <p
+         <p
           className="text-xl"
         >
-          { parseFloat(count).toFixed(2) }
+          {parseFloat(count).toFixed(2)}
         </p>
       </div>
       <div
@@ -185,10 +205,10 @@ export function Cronometer() {
       >
         <div className="container m0 p-4">
           <button
-            className={ startClass }
-            onClick={ start }
+            className={startClass}
+            onClick={start}
           >
-            { btnName }
+            {btnName}
           </button>
         </div>
       </div>
@@ -196,6 +216,7 @@ export function Cronometer() {
         allTurns={allTurns}
         handleDelete={handleDelete}
         sendWorkTime={sendWorkTime}
+        initTurn={ initTimer }
       />
       <section className="flex justify-around container m-0">
         <Table
@@ -206,7 +227,7 @@ export function Cronometer() {
           taskQuantXp={taskQuantXp}
         />
         <button
-          className="w-2/12 h-1/2 text-2xl text-slate-200 m-4 bg-red-800 rounded"
+          className="w-2/12 h-1/2 text-2xl text-slate-200 m-4 bg-red-800 rounded hover:bg-red-600 active:opacity-80 transition-60"
 
           onClick={cleaning}
         >

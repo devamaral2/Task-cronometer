@@ -26,7 +26,7 @@ class TaskTime extends React.Component {
             name="task-time"
           />
         <button
-          className="w-2/12 h-1/2 text-3xl text-black m-4 bg-slate-200 rounded disabled:opacity-50"
+          className="w-2/12 h-1/2 text-3xl text-black m-4 bg-slate-200 rounded disabled:opacity-50 hover:opacity-80 active:bg-slate-500 focus:outline-none transition duration-20 ease-in"
           disabled={(radio === '' || totalTime === 0) ? true : false}
           onClick={handleTurn}
         >
